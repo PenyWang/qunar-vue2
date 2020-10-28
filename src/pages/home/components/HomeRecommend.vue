@@ -5,20 +5,20 @@
       <span>猜你喜欢</span>
     </div>
     <ul>
-      <li class="recommend-item" v-for="item in recommendList" :key="item.id">
+      <li class="recommend-item" v-for="item in newrecommendList" :key="item.id">
         <div class="recommend-img">
           <img
             class="recommend-img-content"
             :src="item.imgUrl"
           />
-          <div class="recommend-img-tag">{{item.tagInfo}}</div>
+          <div class="recommend-img-tag">{{item.tag}}</div>
         </div>
         <div class="recommend-content">
           <div class="content-title">{{item.title}}</div>
           <div class="content-comment">
             <div class="comment-level">
               <!-- <i class="iconfont icon-star" v-for="(star, index) in item.stars" :key="index"></i> -->
-              <i class="iconfont icon-star" v-for="(star, index) in generateArr(item.starCount)" :key="index"></i>
+              <i class="iconfont icon-star" v-for="(star, index) in item.starsList" :key="index"></i>
             </div>
             <div class="comment-count">{{item.commentNum}}条评论</div>
           </div>
@@ -26,7 +26,7 @@
             <div class="footer-price">
               <span class="price-content">¥<span class="price-num">{{item.price}}</span></span>起
             </div>
-            <div class="footer-area">{{item.area}}</div>
+            <div class="footer-area">{{item.district}}</div>
           </div>
         </div>
       </li>
@@ -37,34 +37,11 @@
 <script>
 export default {
   name: "HomeRecommend",
-  props: {},
+  props: {
+    recommendList: Array
+  },
   data() {
     return {
-      recommendList: [
-        {
-          id: 1,
-          imgUrl: 'https://imgs.qunarzz.com/sight/p0/1507/cc/19733fc0135062788140cbb48ae606a7.water.jpg_200x200_d9ebe2fd.jpg',
-          tagInfo: '可订明日',
-          title: '北京野生动物园',
-          starCount: 5,
-          stars: [1, 1, 1, 1, 1],
-          commentNum: 44761,
-          price: 141,
-          area: '大兴区'
-        },
-        {
-          id: 2, imgUrl: 'https://imgs.qunarzz.com/sight/p0/1507/cc/19733fc0135062788140cbb48ae606a7.water.jpg_200x200_d9ebe2fd.jpg', stars: [1, 1, 1, 1, 1], tagInfo: '可订明日', title: '北京野生动物园', starCount: 5, commentNum: 44761, price: 141, area: '大兴区'
-        },
-        {
-          id: 3, imgUrl: 'https://imgs.qunarzz.com/sight/p0/1507/cc/19733fc0135062788140cbb48ae606a7.water.jpg_200x200_d9ebe2fd.jpg', stars: [1, 1, 1, 1, 1], tagInfo: '可订明日', title: '北京野生动物园', starCount: 5, commentNum: 44761, price: 141, area: '大兴区'
-        },
-        {
-          id: 4, imgUrl: 'https://imgs.qunarzz.com/sight/p0/1507/cc/19733fc0135062788140cbb48ae606a7.water.jpg_200x200_d9ebe2fd.jpg', stars: [1, 1, 1, 1, 1], tagInfo: '可订明日', title: '北京野生动物园', starCount: 5, commentNum: 44761, price: 141, area: '大兴区'
-        },
-        {
-          id: 5, imgUrl: 'https://imgs.qunarzz.com/sight/p0/1507/cc/19733fc0135062788140cbb48ae606a7.water.jpg_200x200_d9ebe2fd.jpg', stars: [1, 1, 1, 1, 1], tagInfo: '可订明日', title: '北京野生动物园', starCount: 5, commentNum: 44761, price: 141, area: '大兴区'
-        },
-      ]
     };
   },
   methods: {
@@ -81,6 +58,14 @@ export default {
           return arr;
         }
       }
+    }
+  },
+  computed: {
+    newrecommendList() {
+      return this.recommendList.map(item => {
+        item.starsList = this.generateArr(item.starCount);
+        return item;
+      })
     }
   },
   components: {},
