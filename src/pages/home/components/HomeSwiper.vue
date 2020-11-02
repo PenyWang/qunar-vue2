@@ -46,6 +46,7 @@ export default {
   position: relative;
   width: 100%;
   height: 0;
+  margin-top: .88rem;
   padding-bottom: 26.67%;
   background-color: #eee;
   .swiper-img {

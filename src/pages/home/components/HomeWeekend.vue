@@ -13,7 +13,7 @@
         </div>
         <div class="recommend-content">
           <div class="content-title">{{item.title}}</div>
-          <div class="content-comment">{{item.content}}</div>
+          <div class="content-comment">{{item.comment}}</div>
         </div>
       </li>
     </ul>
@@ -23,29 +23,11 @@
 <script>
 export default {
   name: "HomeWeekend",
-  props: {},
+  props: {
+    weekendList: Array
+  },
   data() {
     return {
-      weekendList: [
-        {
-          id: 1,
-          imgUrl: 'http://img1.qunarzz.com/sight/source/1811/f3/86173f863bef61.jpg_r_640x214_52b003ac.jpg',
-          title: '京城周末撒欢',
-          content: '在帝都过周末，不仅仅是城中游！',
-        },
-        {
-          id: 2,
-          imgUrl: 'http://img1.qunarzz.com/sight/source/1811/f3/86173f863bef61.jpg_r_640x214_52b003ac.jpg',
-          title: '京城周末撒欢',
-          content: '在帝都过周末，不仅仅是城中游！',
-        },
-        {
-          id: 3,
-          imgUrl: 'http://img1.qunarzz.com/sight/source/1811/f3/86173f863bef61.jpg_r_640x214_52b003ac.jpg',
-          title: '京城周末撒欢',
-          content: '在帝都过周末，不仅仅是城中游！',
-        }
-      ]
     };
   },
   methods: {},

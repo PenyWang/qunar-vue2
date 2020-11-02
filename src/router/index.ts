@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../pages/home/Home.vue'
-import List from '../pages/list/List.vue';
+import Cities from '@/pages/cities/Cities.vue'
+// import List from '../pages/list/List.vue';
 
 Vue.use(VueRouter)
 
@@ -11,6 +12,11 @@ const routes: Array<RouteConfig> = [
     name: 'Home',
     component: Home
   },
+  {
+    path: '/cities',
+    name: 'Cities',
+    component: Cities
+  }
   // {
   //   path: '/list',
   //   name: 'List',

@@ -8,7 +8,9 @@
       <div class="search-kw">输入城市/景点/游玩主题</div>
       <input class="header-input" type="text"/>
     </div>
-    <div class="header-right">{{city}}<i class="iconfont icon-pull"></i></div>
+    <router-link to="/cities">
+      <div class="header-right">{{city}}<i class="iconfont icon-pull"></i></div>
+    </router-link>
   </div>
 </template>
 
@@ -30,10 +32,14 @@ export default {
 @import '~styles/variables.scss';
 
 .header-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 0.88rem;
+  top: 0;
+  z-index: 999;
   background-color: $bgColor;
   color: #ffffff;
   display: flex;
-  height: 0.88rem;
   .header-back {
     width: 0.8rem;
     height: 100%;
@@ -46,6 +52,7 @@ export default {
   .header-right {
     @extend .header-back;
     width: 1.32rem;
+    color: #fff;
     .icon-pull {
       font-size: .01rem;
     }
