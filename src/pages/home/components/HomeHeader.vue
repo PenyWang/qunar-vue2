@@ -50,8 +50,10 @@ export default {
     }
   }
   .header-right {
-    @extend .header-back;
-    width: 1.32rem;
+    min-width: 1.1rem;
+    height: 100%;
+    line-height: .88rem;
+    text-align: center;
     color: #fff;
     .icon-pull {
       font-size: .01rem;

@@ -1,36 +1,49 @@
 <template>
   <div class="list-wrapper" ref="listRef">
-    <div class="hot-city clearfix">
-      <div class="header">选择城市</div>
-      <ul>
-        <li v-for="item in hotCities" :key="item.id">{{ item.name }}</li>
-      </ul>
-    </div>
-    <div class="city-sort clearfix">
-      <div class="header">城市排序</div>
-      <ul>
-        <li
-          v-for="(item, key) in cities"
-          :key="key"
-          :ref="key"
-          @click.stop.prevent="clickCity"
-        >
-          {{ key }}
-        </li>
-      </ul>
-    </div>
-    <div class="city-choose clearfix" v-for="(item, key) in cities" :key="key">
-      <div class="header">{{ key }}</div>
-      <ul>
-        <li v-for="ite in item" :key="ite.id">{{ ite.name }}</li>
-      </ul>
+    <div>
+      <div class="hot-city clearfix">
+        <div class="header">选择城市</div>
+        <ul>
+          <li
+            v-for="item in hotCities"
+            :key="item.id"
+            @click.stop="clickHot(item)"
+          >
+            {{ item.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="city-sort clearfix">
+        <div class="header">城市排序</div>
+        <ul>
+          <li
+            v-for="(item, key) in cities"
+            :key="key"
+            @click.stop.prevent="clickCity"
+          >
+            {{ key }}
+          </li>
+        </ul>
+      </div>
+      <div
+        class="city-choose clearfix"
+        v-for="(item, key) in cities"
+        :key="key"
+        :ref="key"
+      >
+        <div class="header">{{ key }}</div>
+        <ul>
+          <li v-for="ite in item" :key="ite.id" @click.stop="clickHot(ite)">{{ ite.name }}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import BScroll from "better-scroll";
+import BScroll from "@better-scroll/core";
 import axios from "axios";
+import { mapActions } from 'vuex';
 
 export default {
   name: "CityList",
@@ -43,19 +56,26 @@ export default {
       letter: "",
     };
   },
-  methods: {},
   components: {},
   methods: {
     clickCity(e) {
       this.letter = e.target.innerText;
     },
+    clickHot(city) {
+      // this.$store.commit("changeCity", { curCity: city.name });
+      // this.$store.dispatch("changeCity", { curCity: city.name });
+      this.changeCity1({ curCity: city.name });
+      localStorage.curCity = city.name;
+      this.$router.push("/"); 
+    },
+    // ...mapActions(['changeCity']),
+    ...mapActions({ changeCity1: 'changeCity' }),
   },
   mounted() {
-    this.scrollList = new BScroll(this.$refs.listRef);
-    // this.scrollList = new BScroll('.list-wrapper', {
-    //   movable: true,
-    //   zoom: true,
-    // });
+    this.scrollList = new BScroll(".list-wrapper", {
+      movable: true,
+      // zoom: true,
+    });
     axios.get("/mock/city.json").then((cityData) => {
       this.hotCities = cityData?.data?.data?.hotCities;
       this.cities = cityData?.data?.data?.cities;
@@ -63,7 +83,8 @@ export default {
   },
   watch: {
     letter() {
-      this.scrollList.scrollToElement(this.$refs[this.letter]);
+      let em = this.$refs[this.letter][0];
+      this.scrollList.scrollToElement(em);
     },
   },
   computed: {},
@@ -85,12 +106,14 @@ export default {
 }
 
 .list-wrapper {
-  position: absolute;
-  top: 0.88rem;
+  // position: absolute;
+  // top: 0.88rem;
+  // margin-top: 0.88rem;
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden;
+  height: 100%;
+  overflow: auto;
   .header {
     height: 0.88rem;
     line-height: 0.88rem;
