@@ -84,7 +84,7 @@
 import BScroll from '@better-scroll/core'
 
 export default {
-  name: "",
+  name: "Scroll",
   props: {},
   data() {
     return {};

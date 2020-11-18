@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../pages/home/Home.vue'
 import Cities from '@/pages/cities/Cities.vue'
-import Test from '@/pages/test/index.vue'
+import TestScroll from '@/pages/test-scroll/Scroll.vue'
+import TestRecursion from '@/pages/test-recursion/index.vue'
 // import List from '../pages/list/List.vue';
 
 Vue.use(VueRouter)
@@ -19,9 +20,14 @@ const routes: Array<RouteConfig> = [
     component: Cities
   },
   {
-    path: '/test',
-    name: 'test',
-    component: Test
+    path: '/test-scroll',
+    name: 'test-scroll',
+    component: TestScroll
+  },
+  {
+    path: '/test-recursion',
+    name: 'test-recursion',
+    component: TestRecursion
   }
   // {
   //   path: '/list',

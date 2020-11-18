@@ -12,7 +12,7 @@ import 'styles/reset.css';
 // import 'styles/iconfont/iconfont.css';
 
 Vue.config.productionTip = false;
-FastClick.attach(document.body);
+// FastClick.attach(document.body);
 
 Swiper.use([Pagination, Mousewheel, Autoplay]);
 Vue.use(getAwesomeSwiper(Swiper));
