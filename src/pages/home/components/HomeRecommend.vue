@@ -5,7 +5,7 @@
       <span>猜你喜欢</span>
     </div>
     <ul>
-      <li class="recommend-item" v-for="item in newrecommendList" :key="item.id">
+      <router-link to="/test-behavior" class="recommend-item" v-for="item in newrecommendList" :key="item.id">
         <div class="recommend-img">
           <img
             class="recommend-img-content"
@@ -29,7 +29,7 @@
             <div class="footer-area">{{item.district}}</div>
           </div>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>

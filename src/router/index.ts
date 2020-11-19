@@ -4,7 +4,7 @@ import Home from '../pages/home/Home.vue'
 import Cities from '@/pages/cities/Cities.vue'
 import TestScroll from '@/pages/test-scroll/Scroll.vue'
 import TestRecursion from '@/pages/test-recursion/index.vue'
-// import List from '../pages/list/List.vue';
+import ScrollBehavior1 from '@/pages/test-behavior/index.vue'
 
 Vue.use(VueRouter)
 
@@ -28,7 +28,12 @@ const routes: Array<RouteConfig> = [
     path: '/test-recursion',
     name: 'test-recursion',
     component: TestRecursion
-  }
+  },
+  {
+    path: '/test-behavior',
+    name: 'scroll-behavior',
+    component: ScrollBehavior1
+  },
   // {
   //   path: '/list',
   //   name: 'List',
@@ -42,7 +47,10 @@ const routes: Array<RouteConfig> = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  scrollBehavior() {
+      return { x: 0,y: 0};
+  },
+  routes,
 })
 
 export default router
