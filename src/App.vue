@@ -1,11 +1,10 @@
 <template>
   <div id="app" @click="clickApp">
     <div id="nav">
-      <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/list">List</router-link> -->
     </div>
     <!-- 使用了keep-alive，是将组件缓存起来一直不销毁组件，意味着初始化的生命周期钩子也不会再被触发 -->
-    <keep-alive> 
+    <!-- exclude表示有哪些组件不需要缓存组件 include表示包含哪些组件可以缓存-->
+    <keep-alive :exclude="['Cities']"> 
       <router-view />
     </keep-alive>
   </div>
