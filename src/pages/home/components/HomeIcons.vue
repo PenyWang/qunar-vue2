@@ -2,7 +2,7 @@
   <div class="home-icons-wrapper">
     <swiper v-if="isShowSwiper" class="sw-container" :options="swiperOptions">
       <swiper-slide class="icon-slide" v-for="(page, idx) in pages" :key="idx">
-        <div class="icon-box" v-for="item in page" :key="item.id">
+        <router-link to="/detail" tag="div" class="icon-box" v-for="item in page" :key="item.id">
           <div class="icon-box-img-wrapper">
             <img
               :src="item.imgUrl"
@@ -12,7 +12,7 @@
           <div class="desc-wrapper">
             <span class="icon-desc">{{item.description}}</span>
           </div>
-        </div>
+        </router-link>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
